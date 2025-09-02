@@ -1,0 +1,40 @@
+{# templates/historico.html #}
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Histórico de Atividades</h1>
+    <div class="history-container">
+        {% for registro in historico %}
+            {% set event_class = {
+                'Vitória': 'vitoria', 
+                'Derrota': 'derrota', 
+                'Jogada': 'jogada',
+                'Novo Jogo Iniciado': 'novo-jogo',
+                'Jogo Carregado': 'novo-jogo'
+            }.get(registro.tipo_evento, 'default') %}
+
+            <div class="history-card {{ event_class }}">
+                <div class="history-header">
+                    <div class="header-left">
+                        <span class="history-icon">
+                            {% if registro.tipo_evento == 'Vitória' %}🏆
+                            {% elif registro.tipo_evento == 'Derrota' %}💀
+                            {% elif registro.tipo_evento == 'Jogada' %}👉
+                            {% else %}✨
+                            {% endif %}
+                        </span>
+                        <span class="history-event-type">{{ registro.tipo_evento }}</span>
+                    </div>
+                    <span class="history-timestamp">
+                        {{ registro.timestamp.strftime('%d/%m/%Y %H:%M:%S') }}
+                    </span>
+                </div>
+                <div class="history-body">
+                    {{ registro.detalhes }}
+                </div>
+            </div>
+        {% else %}
+            <p>Nenhuma atividade registrada ainda.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

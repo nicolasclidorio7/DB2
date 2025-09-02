@@ -1,0 +1,17 @@
+{# templates/novo_jogo.html #}
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Iniciar Novo Jogo</h1>
+    <p>Clique em uma categoria para começar a jogar.</p>
+
+    <div class="category-container">
+        <form method="POST" action="{{ url_for('novo_jogo') }}" class="category-form">
+            {% for cat in categorias %}
+                <button type="submit" name="categoria" value="{{ cat }}" class="category-btn">
+                    {{ cat }}
+                </button>
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}

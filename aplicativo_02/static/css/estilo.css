@@ -1,0 +1,29 @@
+body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; background-color: #f4f4f4; }
+nav { background-color: #333; padding: 10px; text-align: center; margin-bottom: 20px; }
+nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+.container { background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center;}
+pre { font-family: monospace, monospace; background-color: #eee; padding: 10px; border-radius: 3px; white-space: pre-wrap; }
+.placar { text-align: center; font-size: 1.2em; margin-bottom: 20px; }
+form { margin-top: 20px; text-align: center; }
+button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+.erro { color: red; text-align: center; margin-top: 10px; }
+.historico-lista li { list-style-type: none; background-color: #f9f9f9; margin-bottom: 5px; padding: 10px; border-left: 3px solid #ccc; }
+.alphabet-form { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.letra-btn { width: 40px; height: 40px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; }
+.letra-btn:hover:not(:disabled) { background-color: #e0e0e0; }
+.letra-btn:disabled { background-color: #d3d3d3; color: #888; cursor: not-allowed; }
+.history-container { display: flex; flex-direction: column; gap: 12px; }
+.history-card { background-color: #f9f9f9; border-left: 5px solid #ccc; border-radius: 5px; padding: 12px 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.header-left { display: flex; align-items: center; gap: 10px; }
+.history-icon { font-size: 1.4em; line-height: 1; }
+.history-event-type { font-weight: bold; font-size: 1.1em; color: #333; }
+.history-body { color: #555; word-wrap: break-word; font-size: 0.95em; padding-left: 34px; }
+.history-timestamp { font-size: 0.8em; color: #888; }
+.history-card.vitoria { border-left-color: #28a745; }
+.history-card.derrota { border-left-color: #dc3545; }
+.history-card.jogada { border-left-color: #007bff; }
+.history-card.novo-jogo { border-left-color: #ffc107; }
+.category-form { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.category-btn { padding: 15px 30px; font-size: 1.2em; font-weight: bold; color: #333; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: all 0.2s ease-in-out; width: 200px; }
+.category-btn:hover { background-color: #e0e0e0; border-color: #999; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }

@@ -1,0 +1,63 @@
+{# templates/index.html #}
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    {# Bloco de mensagens flash (permanece o mesmo) #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1>Jogo da Forca</h1>
+    <div class="placar">
+        🏆 Vitórias: {{ placar.vitorias }} | 💀 Derrotas: {{ placar.derrotas }}
+    </div>
+
+    {% if jogo %}
+        <pre>{{ jogo.obter_visualizacao() }}</pre>
+
+        {# Lógica para mostrar o formulário ou a tela de fim de jogo #}
+        {% if jogo.fim_de_jogo %}
+            {% if jogo.vitoria %}
+                <h2>🎉 Você Venceu! 🎉</h2>
+            {% else %}
+                <h2>☠️ Você Perdeu! A palavra era: {{ jogo.palavra_secreta }} ☠️</h2>
+            {% endif %}
+            <div class="centro">
+                <a class="botao" href="{{ url_for('novo_jogo') }}">Jogar Novamente</a>
+            </div>
+        {% else %}
+            {# O formulário só aparece se o jogo não acabou #}
+            <div class="alphabet-container">
+                <form method="POST" action="{{ url_for('index') }}" class="alphabet-form">
+                    {# Juntamos as letras corretas e erradas para saber tudo que já foi tentado #}
+                    {% set letras_tentadas = jogo.letras_corretas.union(jogo.letras_erradas) %}
+
+                    {# Loop para criar um botão para cada letra do alfabeto #}
+                    {% for letra in alfabeto %}
+                        <button type="submit" name="letra" value="{{ letra }}"
+                                class="letra-btn"
+                                {# Desabilita o botão se a letra já foi tentada #}
+                                {% if letra in letras_tentadas %}disabled{% endif %}>
+                            {{ letra }}
+                        </button>
+                    {% endfor %}
+                </form>
+            </div>
+            {% if erro %}
+                <p class="erro">{{ erro }}</p>
+            {% endif %}
+        {% endif %}
+
+    {% else %}
+        <h2>Bem-vindo!</h2>
+        <p>Não há nenhum jogo em andamento.</p>
+        <div class="centro">
+            <a class="botao" href="{{ url_for('novo_jogo') }}">Clique aqui para começar um novo jogo!</a>
+        </div>
+    {% endif %}
+{% endblock %}
