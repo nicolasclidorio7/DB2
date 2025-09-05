@@ -1,7 +1,7 @@
 import ZODB, ZODB.FileStorage
 import transaction
 # Importando as classes do slide anterior
-from zodb.model import Autor
+from model import Autor
 
 # 1. Configura o armazenamento e abre a conexão
 storage = ZODB.FileStorage.FileStorage('meu_banco.fs')
